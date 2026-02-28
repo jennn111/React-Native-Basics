@@ -1,29 +1,27 @@
-import { Link } from 'expo-router';
-import { StyleSheet } from 'react-native';
-
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+import { StatusBar } from 'expo-status-bar';
+import { Platform, StyleSheet, Text, View, Button } from 'react-native';
+import { useRouter } from 'expo-router';
 
 export default function ModalScreen() {
+  const router = useRouter();
+
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="title">This is a modal</ThemedText>
-      <Link href="/" dismissTo style={styles.link}>
-        <ThemedText type="link">Go to home screen</ThemedText>
-      </Link>
-    </ThemedView>
+    <View style={styles.container}>
+      <Text style={styles.title}>Information</Text>
+      <View style={styles.separator} />
+      <Text style={styles.desc}>This is a modal for settings or notifications.</Text>
+      
+      <Button title="Dismiss" onPress={() => router.back()} />
+
+      {/* Use a light status bar on iOS to account for the black space above the modal */}
+      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
+  container: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20 },
+  title: { fontSize: 20, fontWeight: 'bold' },
+  separator: { marginVertical: 30, height: 1, width: '80%', backgroundColor: '#eee' },
+  desc: { textAlign: 'center', color: '#666', marginBottom: 20 }
 });
