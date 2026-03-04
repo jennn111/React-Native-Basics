@@ -47,7 +47,6 @@ export default function HomeScreen() {
 
       <SearchBar value={search} onChangeText={setSearch} />
 
-      {/* FlatList */}
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
@@ -56,7 +55,6 @@ export default function HomeScreen() {
         )}
       />
 
-      {/* Form Section */}
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={styles.form}
@@ -81,13 +79,10 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </KeyboardAvoidingView>
 
-      {/* Navigate Button */}
       <Button title="Go to Orders" onPress={() => router.push("/orders")} />
 
-      {/* Modal Button */}
       <Button title="Show Modal" onPress={() => setModalVisible(true)} />
 
-      {/* Modal */}
       <Modal visible={modalVisible} transparent animationType="slide">
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
